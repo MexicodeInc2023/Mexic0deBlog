@@ -1,50 +1,52 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/pages/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<MainLayout>
+  <div class="pb-6 sm:pb-8 lg:pb-12">
+    <section class="max-w-screen-2xl px-4 md:px-8 mx-auto md:mt-2">
+      <div class="flex flex-wrap justify-between mb-8 md:mb-16">
+        <div
+          class="w-full lg:w-1/3 flex flex-col justify-center lg:pt-48 lg:pb-24 mb-6 sm:mb-12 lg:mb-0"
+        >
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-8">
+            Bienvenido ! 🚀
+          </h1>
+
+          <p class="max-w-md xl:text-lg">
+            Bienvenidos a MEXIC0DE_TUTO, una web de MEXIC0DE! Tutoriales y guias
+            sobre el mundo de la tecnologia.
+          </p>
+          <div class="mt-2">
+            <a
+              class="inline-block btn-primary hover:bg-cyan-600 focus-visible:ring ring-teal-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 shadow-md"
+              href="/blog">Blog</a
+            >
+          </div>
+        </div>
+
+        <div class="w-full lg:w-2/3 flex mb-12 md:mb-16">
+          <div
+            class="bg-gray-100 rounded-lg shadow-lg overflow-hidden relative z-10 top-12 md:top-16 left-12 md:left-16 -ml-12 lg:ml-0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1564865878688-9a244444042a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+              loading="lazy"
+              alt="Photo by Roman Synkevych"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+
+          <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1608306448197-e83633f1261c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              loading="lazy"
+              alt="Photo by Mohammad Rahmani"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</MainLayout>

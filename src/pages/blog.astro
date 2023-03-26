@@ -1,0 +1,62 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Footer from "../components/Footer.astro";
+import Card from "../components/Card.astro";
+import BtnUp from "../components/BtnUp.astro";
+import SearchInput from "../components/SearchInput.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+);
+---
+
+<MainLayout>
+  <BtnUp />
+  <section>
+    <div class="py-6 sm:py-8 lg:py-12">
+      <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
+        <!-- text - start -->
+        <div class="mb-10 md:mb-16">
+          <h2 class="text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
+            Blog
+          </h2>
+
+          <div>
+            <SearchInput />
+          </div>
+          <p class="mt-4 text-right" id="infoSearch"></p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8"
+      id="posts"
+    >
+      {
+        posts.map((post) => (
+          <div class="cards">
+            <Card
+              link={post.url}
+              title={post.frontmatter.title}
+              date={new Date(post.frontmatter.pubDate).toLocaleDateString(
+                "es-mx",
+                {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                }
+              )}
+              heroImage={post.frontmatter.heroImage}
+              heroImageAlt={post.frontmatter.heroImageAlt}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</MainLayout>

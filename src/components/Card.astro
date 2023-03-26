@@ -1,0 +1,39 @@
+---
+const { title, date, heroImage, link, heroImageAlt } = Astro.props;
+---
+
+<a href={link}>
+  <div
+    class="shadow-md border border-primary rounded-lg max-w-sm card -z-10 glass"
+  >
+    <div class="group h-48 md:h-64 block overflow-hidden relative">
+      <img
+        class="rounded-t-lg w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
+        loading="lazy"
+        src={heroImage}
+        alt={heroImageAlt}
+      />
+    </div>
+    <div class="p-5">
+      <h3 class="font-bold text-2xl tracking-tight mb-2 text-left">
+        {title}
+      </h3>
+      <p class="font-normal">{date}</p>
+    </div>
+  </div>
+</a>
+<style>
+  .card {
+    animation-duration: 2s;
+    animation-name: fadein;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

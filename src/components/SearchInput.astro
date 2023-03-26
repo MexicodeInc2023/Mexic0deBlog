@@ -1,0 +1,75 @@
+<section class="flex items-center">
+  <label for="simple-search" class="sr-only">Search</label>
+  <div class="relative w-full -z-10">
+    <div
+      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+    >
+      <svg
+        aria-hidden="true"
+        class="w-5 h-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        ><path
+          fill-rule="evenodd"
+          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </div>
+    <input
+      type="text"
+      id="searchBox"
+      placeholder="Buscar..."
+      class="border border-secondary focus:border-primary bg-base-100 text-sm rounded-lg w-full pl-10 p-2.5"
+      required
+    />
+  </div>
+</section>
+
+<script>
+  const searchBox = document.querySelector("#searchBox");
+  searchBox.addEventListener("keyup", () => {
+    let input, filter, section, div, h2, i;
+    input = document.getElementById("searchBox");
+    filter = input.value.toUpperCase();
+    section = document.getElementById("posts");
+    div = section.getElementsByClassName("cards");
+    for (i = 0; i < div.length; i++) {
+      h2 = div[i].getElementsByTagName("h3")[0];
+      if (h2) {
+        var palabrasEnFiltro = filter.split(" ");
+        var hallado = 0;
+        for (var filtro of palabrasEnFiltro) {
+          if (h2.innerHTML.toUpperCase().indexOf(filtro) > -1) {
+            hallado++;
+          }
+        }
+        if (hallado === palabrasEnFiltro.length) {
+          div[i].style.display = "";
+        } else {
+          div[i].style.display = "none";
+        }
+        // si todos los div tienen display none, mostrar mensaje
+        let todosOcultos = true;
+
+        for (let allCards of div) {
+          if (allCards.style.display !== "none") {
+            todosOcultos = false;
+          }
+        }
+        const element = Array.from(div);
+        const hiddenDiv = element.filter(
+          (element: { style: { display: string } }) =>
+            element.style.display !== "none"
+        );
+        const totalDiv = hiddenDiv.length;
+        const infoSearch = document.querySelector("#infoSearch");
+        todosOcultos == true
+          ? (infoSearch.textContent = "No hay resultados")
+          : (infoSearch.textContent = `Mostrando ${totalDiv} de ${div.length} resultados`);
+      } else {
+        console.log("no hay titulos");
+      }
+    }
+  });
+</script>

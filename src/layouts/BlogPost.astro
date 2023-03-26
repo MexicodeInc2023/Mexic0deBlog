@@ -1,51 +1,134 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BtnUp from "../components/BtnUp.astro";
+import ProgresBar from "../components/ProgresBar.astro";
+import "../styles/prism.css";
+import "../styles/global.css";
 
-type Props = CollectionEntry<'blog'>['data'];
+export interface Props {
+  content: {
+    title: string;
+    description: string;
+    pubDate?: string;
+    updatedDate?: string;
+    heroImage?: string;
+    heroImageAlt?: string;
+  };
+}
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+  content: {
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    heroImage,
+    heroImageAlt,
+  },
+} = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-				border-top: 1px solid #ddd;
-				margin: 1rem 0;
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<html lang="es">
+  <head>
+    <BaseHead title={title} description={description} />
+    <script is:inline>
+      // ☝️ This script prevent the FART effect.
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "light");
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme")
+        );
+      // "theme" LocalStorage value is set by the package to remember user preference.
+      // The value is checked and applyed before rendering anything.
+    </script>
+    <script>
+      import { themeChange } from "theme-change";
+      themeChange();
+      // 👆 you could import the CDN directly instead of these two lines
+    </script>
+  </head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-				<h1 class="title">{title}</h1>
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<div class="last-updated-on">
-							Last updated on <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
-				<hr />
-				<slot />
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <ProgresBar />
+    <BtnUp />
+    <main>
+      <article class="max-w-4xl m-0" style="margin: auto; padding: 0 1rem;">
+        {
+          heroImage && (
+            <img
+              width={720}
+              height={360}
+              class="rounded-t-lg w-full h-full"
+              src={heroImage}
+              alt={heroImageAlt}
+            />
+          )
+        }
+        <h1 class="font-bold text-5xl tracking-tight mb-2 mt-2">
+          {title}
+        </h1>
+        <p >{pubDate && <time>{pubDate}</time>}</p>
+        {
+          updatedDate && (
+            <div>
+              <p class="">
+                {" "}
+                Ultima vez actualizado <time>{updatedDate}</time>
+              </p>
+            </div>
+          )
+        }
+        <hr class="border-r-1 border-black dark:border-cyan-100" />
+        <br />
+        <div class="prose lg:prose-xl dark:prose-invert"><slot /></div>
+      </article>
+    </main>
+    <Footer />
+
+    <style>
+      /*  article {
+        max-width: 750px;
+        margin: 0 auto;
+        
+      } */
+    </style>
+    <script is:inline>
+      function enableCopy(
+        selector = "pre",
+        childSelector = "code",
+        btnText = "📋",
+        btnTextSuccess = "Copied✅",
+        activeClass = "copy"
+      ) {
+        document
+          .querySelectorAll(`${selector}:not(.${activeClass})`)
+          .forEach((node) => {
+            // create a "copy" button
+            let copyBtn = document.createElement("button");
+            copyBtn.innerText = btnText;
+            // activeClass acts as flag so we don't add another copy button by  mistake
+            copyBtn.classList.add(activeClass);
+            node.appendChild(copyBtn);
+            copyBtn.addEventListener("click", async () => {
+              // get the code to copy
+              let code = node.querySelector(childSelector).innerText;
+              // copy to clipboard
+              await navigator.clipboard.writeText(code);
+              // change button text
+              copyBtn.innerText = btnTextSuccess;
+              // reset button text after 1 second
+              setTimeout(() => {
+                copyBtn.innerText = btnText;
+              }, 1000);
+            });
+          });
+      }
+      enableCopy();
+    </script>
+  </body>
 </html>

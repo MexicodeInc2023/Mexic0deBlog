@@ -1,25 +1,92 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+import ToggleTheme from "./ToggleTheme.astro";
 ---
 
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+  <nav class="px-2 sm:px-4 py-2.5 rounded sticky">
+    <div class="container flex flex-wrap items-center justify-between mx-auto">
+      <a href="/" class="flex items-center">
+        <span
+          class="xl:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-sky-600 to-blue-500 hidden md:block md:text-4xl "
+          >{SITE_TITLE}</span
+        >
+      </a>
+      <div>
+        <ul >
+          <li>
+            <HeaderLink href="/">Inicio</HeaderLink>
+          </li>
+          <li>
+            <HeaderLink href="/blog">Blog</HeaderLink>
+          </li>
+          <!-- <li>
+            <HeaderLink href="https://jcekm.vercel.app/About" target="_blank"
+              >Acerca de</HeaderLink
+            >
+          </li> -->
+          <ToggleTheme />
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>
 <style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
+  ul {
+    list-style-type: none;
+    display: flex;
+    padding: 18px 0;
+    background-size: 200% 200%;
+    background-color: #0093e9;
+    background-image: linear-gradient(90deg, #0093e9 0%, #082557 100%);
+    animation: 12s myGradient infinite;
+    border-radius: 5px;
+    box-shadow: 3px 3px 20px #1c1d5a;
+  }
+
+  @keyframes myGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  a.active {
+    transition: 0.5s;
+  }
+  a:hover {
+    color: #fff;
+    animation: 1.5s myFlash linear infinite;
+    text-shadow: 2px 2px 30px rgb(3, 10, 69);
+    transition: 2s;
+  }
+  li a {
+    color: #fff !important;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+
+  /* Dispositivos moviles */
+  @media (max-width: 768px) {
+    li a {
+      font-size: 14px;
+    }
+    ul {
+      padding: 14px 0;
+      margin-right: 10px;
+    }
+  }
 </style>
