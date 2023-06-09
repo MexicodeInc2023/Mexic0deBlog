@@ -1,5 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import CallAction from "../components/CallAction.astro";
+import MeetTeam from "../components/MeetTeam.astro";
 ---
 
 <MainLayout>
@@ -14,8 +16,8 @@ import MainLayout from "../layouts/MainLayout.astro";
           </h1>
 
           <p class="max-w-md xl:text-lg">
-            Bienvenidos a MEXIC0DE_TUTO, una web de MEXIC0DE! Tutoriales y guias
-            sobre el mundo de la tecnologia.
+            MEXIC0DE_TUTO una web de MEXIC0DE!, Tutoriales y guias sobre el
+            mundo de la tecnologia.
           </p>
           <div class="mt-2">
             <a
@@ -47,6 +49,12 @@ import MainLayout from "../layouts/MainLayout.astro";
           </div>
         </div>
       </div>
+    </section>
+    <section>
+      <CallAction />
+    </section>
+    <section>
+      <MeetTeam />
     </section>
   </div>
 </MainLayout>

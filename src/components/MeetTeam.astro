@@ -1,0 +1,53 @@
+---
+import TeamCard from "../components/TeamCard.astro";
+import Chepe from "../../public/pic/Chepe.jpg";
+import Enagar from "../../public/pic/Enagar.png";
+import Mario from "../../public/pic/Mario.jpg";
+import Temo from "../../public/pic/Temo.jpg";
+import Senuez from "../../public/pic/Senuez.png";
+---
+
+<div class="py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <h2
+      class="mb-8 text-center text-2xl font-bold text-primary md:mb-12 lg:text-4xl"
+    >
+      Conoce al equipo!
+    </h2>
+
+    <div
+      class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-5"
+    >
+      <TeamCard
+        name="Cesar Zepeda"
+        role="Back-End Developer"
+        img={Senuez}
+        porfolio="https://mexic0de.page/cesar"
+      />
+      <TeamCard
+        name="Eduardo Flores"
+        role="Front-End Developer"
+        img={Temo}
+        porfolio="https://mexic0de.page/temo"
+      />
+      <TeamCard
+        name="Jose Arjona"
+        role="Front-End Developer"
+        img={Chepe}
+        porfolio="https://mexic0de.page/jaam"
+      />
+      <TeamCard
+        name="Mario Rosales "
+        role="Full-Stack Developer"
+        img={Mario}
+        porfolio="https://mexic0de.page/marm"
+      />
+      <TeamCard
+        name="Enrique Aguilar"
+        role="Front-End Developer"
+        img={Enagar}
+        porfolio="https://mexic0de.page/enagar"
+      />
+    </div>
+  </div>
+</div>

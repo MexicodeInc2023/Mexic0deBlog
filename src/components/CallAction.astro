@@ -1,0 +1,129 @@
+<div class="py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mx-auto flex max-w-xl flex-col items-center text-center">
+      <p class="mb-4 font-semibold text-accent md:mb-6 md:text-lg xl:text-xl">
+        Un proyecto de
+      </p>
+
+      <h1
+        class="text-black-800 mb-8 text-3xl font-bold sm:text-4xl md:mb-12 md:text-5xl"
+      >
+        MEXIC0DE
+      </h1>
+
+      <div class="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
+        <button class="btn gap-2 btn-info" id="btnOpenModal">
+          Compartir la web
+          <!--?xml version="1.0" encoding="UTF-8"?-->
+          <svg
+            width="24px"
+            height="24px"
+            stroke-width="1.4"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="#000000"
+            ><path
+              d="M18 22a3 3 0 100-6 3 3 0 000 6zM18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6z"
+              stroke="#000000"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path><path
+              d="M15.5 6.5l-7 4M8.5 13.5l7 4"
+              stroke="#000000"
+              stroke-width="1.4"></path></svg
+          >
+        </button>
+
+        <a
+          class="btn gap-2 btn-outline btn-primary"
+          href="https://mexic0de.page/"
+          target="_blank"
+        >
+          Más de MEXIC0DE
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            ></path></svg
+          >
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  id="modal"
+  class="fixed inset-0 flex items-center justify-center z-50 hidden"
+>
+  <div class="bg-base-300 p-8 rounded shadow-lg">
+    <h2 class="text-2xl font-bold mb-4">Selecciona la red social</h2>
+    <ul class="flex space-x-4">
+      <li>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          id="twitterBtn">Twitter</button
+        >
+      </li>
+      <li>
+        <button
+          class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+          id="faceBtn">Facebook</button
+        >
+      </li>
+      <li>
+        <button
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          id="whatsBtn">WhatsApp</button
+        >
+      </li>
+    </ul>
+    <button class="mt-4 text-gray-200 hover:text-red-400" id="btnCloseModal"
+      >Cancelar</button
+    >
+  </div>
+</div>
+
+<script>
+  const btnOpenModal = document.getElementById("btnOpenModal");
+  const btnCloseModal = document.getElementById("btnCloseModal");
+  const twitterBtn = document.getElementById("twitterBtn");
+  const faceBtn = document.getElementById("faceBtn");
+  const whatsBtn = document.getElementById("whatsBtn");
+  const url = window.location.href;
+  const title =
+    "¡Echa un vistazo a este increible blog de tecnología de Mexic0de!";
+
+  btnOpenModal?.addEventListener("click", () => {
+    document.getElementById("modal")?.classList.remove("hidden");
+  });
+
+  twitterBtn?.addEventListener("click", () => {
+    window.open(
+      `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
+      "_blank"
+    );
+  });
+
+  faceBtn?.addEventListener("click", () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`,
+      "_blank"
+    );
+  });
+
+  whatsBtn?.addEventListener("click", () => {
+    window.open(`https://api.whatsapp.com/send?text=${title} ${url}`, "_blank");
+  });
+
+  btnCloseModal?.addEventListener("click", () => {
+    document.getElementById("modal")?.classList.add("hidden");
+  });
+</script>
