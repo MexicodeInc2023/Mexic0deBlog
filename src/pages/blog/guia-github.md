@@ -1,6 +1,7 @@
 ---
 layout: "../../layouts/BlogPost.astro"
 title: "Guia Basica Github"
+autor: "Jose Arjona"
 description: "Guia basica y Comandos Basicos Github"
 pubDate: "05 Nov 2022"
 heroImage: "https://myblogtime.com/wp-content/uploads/2020/08/Git-hub-1.png"

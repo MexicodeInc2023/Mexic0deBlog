@@ -11,6 +11,7 @@ export interface Props {
   content: {
     title: string;
     description: string;
+    autor?: string;
     pubDate?: string;
     updatedDate?: string;
     heroImage?: string;
@@ -21,6 +22,7 @@ export interface Props {
 const {
   content: {
     title,
+    autor,
     description,
     pubDate,
     updatedDate,
@@ -72,11 +74,14 @@ const {
         <h1 class="font-bold text-5xl tracking-tight mb-2 mt-2">
           {title}
         </h1>
-        <p >{pubDate && <time>{pubDate}</time>}</p>
+        <p class="text-gray-400 dark:text-gray-300 pt-2 pb-2">
+          {autor && <span>Por {autor}</span>}
+        </p>
+        <p class="pb-2">{pubDate && <time>{pubDate}</time>}</p>
         {
           updatedDate && (
             <div>
-              <p class="">
+              <p class="pb-2">
                 {" "}
                 Ultima vez actualizado <time>{updatedDate}</time>
               </p>
